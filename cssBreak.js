@@ -1,8 +1,7 @@
 /*
- * Author: Nick Price & Ben Gourley
+ * cssBreak.js
+ * A media-query trigger library
  * Build date: 17/2/14
- * Repository: http://github.com/nicholasjohn/break
- * Origin: http://github.com/bengourley/break
  */
 (function () {
 
