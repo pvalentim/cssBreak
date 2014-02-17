@@ -9,25 +9,24 @@ http://nicholasjohn.github.io/cssBreak/example/
 
 ## Dependencies:
 
-This module depends on Modernizr **>=v2.6** (Media query test) and should use the [matchMedia](https://github.com/paulirish/matchMedia.js/) polyfill for IE9 support.
-
-It is up to you to ensure this dependency exists. In the example, a
-custom build of Modernizr only containing `mq()` is used.
-You should do something better in production.
+This module depends on a [matchMedia polyfill](https://github.com/paulirish/matchMedia.js/) for IE9 support.
+It is up to you to ensure this dependency exists. In the example, the script is contained within a IE9 conditional.
 
 # Usage:
 
+Initialise breakpoints using `cssBreak.add( '#mq', 'cssMediaQuery' /*, isIe */ )` :
 ```js
-// Initialise your breakpoints
-breakCss.add('small', '(min-width: 500px)')
-breakCss.add('medium', '(min-width: 800px)', true) // The third paramater here calls on IE
+cssBreak.add('small', '(min-width: 500px)')
+cssBreak.add('medium', '(min-width: 800px)', true)
+```
 
-// Call your listeners
-breakCss.on('enter:small', function () {
+Call listeners using `cssBreak.on( 'enter:#mq', callback )` or `cssBreak.on( 'exit:#mq', callback )` :
+```js
+cssBreak.on('enter:small', function () {
   // Do something for small screens here
 })
 
-breakCss.on('exit:small', function () {
+cssBreak.on('exit:small', function () {
   // Undo the setup for small screens here
 })
 ```
