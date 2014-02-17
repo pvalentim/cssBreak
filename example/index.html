@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>cssBreak.js example</title>
+  <style>
+  /*
+       * Page styles
+       */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family:'HelveticaNeue', 'Helvetica', Arial, sans-serif;
+    color: #444;
+    background: #eee;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  a { color: #4aa; }
+  .container {
+    width: 600px;
+    margin: 100px auto;
+    padding: 20px 20px 0;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 3px -2px rgba(0, 0, 0, 0.1);
+  }
+  pre {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 20px 0px;
+    font-family:'Menlo', 'Monaco', monospace;
+    color: #555;
+  }
+  p { margin: 20px 0px }
+  abbr {
+    font-style: italic;
+    border-bottom: 1px dotted;
+    color: #000;
+  }
+  </style>
+</head>
+
+<body>
+  <div class='container'>
+    <h1>cssBreak.js</h1>
+    <p>A cross-browser CSS-detection module for breakpoints.</p>
+    <p>The following breakpoints are set:</p>
+    <pre><code>  // Add media queries
+  // cssBreak.add(breakpointName, mediaQuery, isIe:=false)
+  cssBreak.add('small', '(min-width: 500px)')
+  cssBreak.add('medium', '(min-width: 800px)', true) // Etc...</code></pre>
+
+    <p>Which causes events to be fired on the window object:
+      <pre><code>  cssBreak.on('enter:small', function () {
+    console.log('Entering small breakpoint')
+  })
+
+  cssBreak.on('exit:small', function () {
+    console.log('Exiting small breakpoint')
+  }) // Etc...</code></pre>
+
+      <p>
+        Therefore, the
+        <abbr>exit:mq</abbr> event is called when you are leaving the breakpoint for a smaller size, and the
+        <abbr>enter:mq</abbr> event called when you reach the breakpoint.
+      </p>
+      <p>Look in the console.log to see the results.</p>
+  </div>
+  <script src='../modernizr.js'></script>
+  <script src='../cssBreak.js'></script>
+  <script>
+  // Add media queries
+  // cssBreak.add(breakpointName, mediaQuery, isIe:=false)
+  cssBreak.add('small', '(min-width: 500px)')
+  cssBreak.add('medium', '(min-width: 800px)', true)
+
+  cssBreak.on('enter:small', function() {
+    if (window.console)
+      console.log('Entering small breakpoint1')
+    else
+      alert('enter.small')
+  })
+  cssBreak.on('exit:small', function() {
+    if (window.console)
+      console.log('Exiting small breakpoint')
+    else
+      alert('exit.small')
+  })
+
+  cssBreak.on('enter:medium', function() {
+    if (window.console)
+      console.log('Entering medium breakpoint')
+    else
+      alert('enter.medium')
+  })
+  cssBreak.on('exit:medium', function() {
+    if (window.console)
+      console.log('Exiting medium breakpoint')
+    else
+      alert('exit.small')
+  })
+  </script>
+</body>
+
+</html>
