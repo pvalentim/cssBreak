@@ -20,7 +20,7 @@
   }
   a { color: #4aa; }
   .container {
-    width: 600px;
+    width: 640px;
     margin: 100px auto;
     padding: 20px 20px 0;
     background: #fff;
@@ -50,26 +50,24 @@
     <h1>cssBreak.js</h1>
     <p>A cross-browser CSS-detection module for breakpoints.</p>
     <p>The following breakpoints are set:</p>
-    <pre><code>  // Add media queries
-  // cssBreak.add(breakpointName, mediaQuery, isIe:=false)
-  cssBreak.add('small', '(min-width: 500px)')
-  cssBreak.add('medium', '(min-width: 800px)', true) // Etc...</code></pre>
+    <pre><code>cssBreak.add('small', '(min-width: 500px)')
+cssBreak.add('medium', '(min-width: 800px)', true) // Legacy IE</code></pre>
 
     <p>Which causes events to be fired on the window object:
-      <pre><code>  cssBreak.on('enter:small', function () {
-    console.log('Entering small breakpoint')
-  })
+      <pre><code>cssBreak.on('enter:small', function () {
+  console.log('Entering small breakpoint')
+})
 
-  cssBreak.on('exit:small', function () {
-    console.log('Exiting small breakpoint')
-  }) // Etc...</code></pre>
+cssBreak.on('exit:small', function () {
+  console.log('Exiting small breakpoint')
+})</code></pre>
 
       <p>
         Therefore, the
         <abbr>exit:mq</abbr> event is called when you are leaving the breakpoint for a smaller size, and the
         <abbr>enter:mq</abbr> event called when you reach the breakpoint.
       </p>
-      <p>Look in the console.log to see the results.</p>
+      <p><em><strong>Hint:</strong> Look in the console.log to see the results!</em></p>
   </div>
 
   <!--[if IE 9]>
