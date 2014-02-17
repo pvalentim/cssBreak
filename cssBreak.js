@@ -6,7 +6,17 @@
  */
 (function () {
 
-  var matchMedia = window.Modernizr.mq
+  /*
+   * matchMedia function taken from Modernizr
+   */
+  var matchMedia
+    , browserMatchMedia = window.matchMedia || window.msMatchMedia
+
+  matchMedia = function(mq) {
+    if (!browserMatchMedia) return false
+    var mql = browserMatchMedia(mq)
+    return mql && mql.matches || false
+  }
 
   function cssBreak () {
 
@@ -32,11 +42,6 @@
     setTimeout(checkActive,0)
 
   }
-
-
-
-
-
 
   /*
    * Construct a BreakPoint, given a name
@@ -80,7 +85,7 @@
   BreakPoint.prototype.check = function () {
 
     // Only run in browsers that support MQ
-    if(!window.Modernizr.mq('only all')) return this
+    if(!matchMedia('only all')) return this
     if (!this.init && matchMedia(this.media)) {
       this.init = true
       this.enter()
@@ -130,7 +135,7 @@
     for (var i = this.breakPoints.length - 1; i >= 0; i--) {
       if (this.breakPoints[i].name === mediaName) {
 
-        if ( !window.Modernizr.mq('only all') && this.breakPoints[i].isIe && mediaType === 'enter') {
+        if ( !matchMedia('only all') && this.breakPoints[i].isIe && mediaType === 'enter') {
           fn()
           return
         }
